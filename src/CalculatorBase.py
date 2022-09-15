@@ -26,7 +26,7 @@ DISTANCE_COST_MAP = {
 }
 
 
-def get_distance_margin(distance):
+def get_distance_cost(distance):
     for max_distance, distance_cost in DISTANCE_COST_MAP.items():
         if distance <= max_distance:
             return distance_cost
@@ -38,7 +38,7 @@ def get_delivery_cost(distance: float, size: Size, fragile: Fragile, rate: Rate)
         raise Exception("Недопустимое значение расстояния до пункта назначения. Расстояние должно быть больше 0")
     if fragile == Fragile.YES.value and distance > 30:
         raise Exception("Мы не доставляем хрупкие грузы на расстояния более 30 км")
-    distance_cost = get_distance_margin(distance)
+    distance_cost = get_distance_cost(distance)
     cost = (distance_cost + size + fragile) * rate
     if cost < min_cost:
         return min_cost
