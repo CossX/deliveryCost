@@ -40,5 +40,4 @@ def test_min_delivery_cost():
 @pytest.mark.parametrize("distance, size, fragile, rate, expected_cost", get_data())
 def test_pairwise(distance, size, fragile, rate, expected_cost):
     actual_cost = get_delivery_cost(distance, size, fragile, rate)
-    print(actual_cost)
     assert expected_cost == actual_cost, "Расчетная стоимость не соответствует ожидаемой"
